@@ -1,17 +1,48 @@
-<div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-4">Urban Elegance</span>
-      </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center">
+      <div class="brand-icon me-2">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+          <path d="M8 12h16v8H8z" fill="white" opacity="0.9"/>
+          <defs>
+            <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#2563eb"/>
+              <stop offset="1" stop-color="#f59e0b"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="brand-text">Urban Elegance</span>
+    </a>
 
-      <ul class="nav nav-pills">
-        <li routerLink=""><a  class="nav-link active" aria-current="page">Home</a></li>
-        <li routerLink="/product" ><a  class="nav-link">Products</a></li>
-        <li routerLink="/register" ><a  class="nav-link">Register</a></li>
-        <li class="nav-item"><a  class="nav-link">Pricing</a></li>
-        <li class="nav-item"><a  class="nav-link">FAQs</a></li>
-        <li routerLink="/about us"class="nav-item"><a  class="nav-link">About</a></li>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/product" class="nav-link" routerLinkActive="active">
+            Products
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/register" class="nav-link" routerLinkActive="active">
+            Register Product
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/about-us" class="nav-link" routerLinkActive="active">
+            About Us
+          </a>
+        </li>
       </ul>
-    </header>
+    </div>
   </div>
+</nav>

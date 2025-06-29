@@ -6,19 +6,23 @@ import { ProductRegisterationComponent } from './pages/product-registeration/pro
 
 export const routes: Routes = [
     {
-        path:"",
-        component:DashboardComponent
+        path: "",
+        component: DashboardComponent
     },
     {
-        path:"product",
-        component:ProductsComponent
+        path: "product",
+        component: ProductsComponent
     },
     {
-        path:"about us",
-        component:AboutUsComponent
+        path: "about-us",
+        component: AboutUsComponent
     },
     {
-        path:"register",
-        component:ProductRegisterationComponent
+        path: "register",
+        component: ProductRegisterationComponent
+    },
+    {
+        path: "**",
+        redirectTo: ""
     }
 ];

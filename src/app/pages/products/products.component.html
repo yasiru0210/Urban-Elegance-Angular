@@ -1,13 +1,56 @@
-<div class="container">
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      
-        <app-product-item *ngFor="let product of ProductList" [productInfo]="product"></app-product-item>
-
+<div class="products-page">
+  <div class="container py-5">
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto text-center">
+        <h1 class="page-title">Our Products</h1>
+        <p class="page-description">
+          Discover our carefully curated collection of premium fashion items, 
+          each selected for quality, style, and exceptional value.
+        </p>
       </div>
-      
-       </div>
+    </div>
 
-     
-     
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="search-box">
+          <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Search products..."
+            [(ngModel)]="searchTerm"
+            (input)="onSearch()">
+          <svg class="search-icon" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="filter-controls">
+          <select class="form-select" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+            <option value="">All Categories</option>
+            <option *ngFor="let category of categories" [value]="category">{{category | titlecase}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
 
+    <div class="loading-container" *ngIf="isLoading">
+      <div class="loading-spinner"></div>
+      <p>Loading products...</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4" *ngIf="!isLoading">
+      <div class="col" *ngFor="let product of filteredProducts; trackBy: trackByProductId">
+        <app-product-item [productInfo]="product"></app-product-item>
+      </div>
+    </div>
+
+    <div class="empty-state text-center py-5" *ngIf="!isLoading && filteredProducts.length === 0">
+      <svg width="64" height="64" fill="currentColor" class="text-muted mb-3" viewBox="0 0 16 16">
+        <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
+      </svg>
+      <h3>No products found</h3>
+      <p class="text-muted">Try adjusting your search or filter criteria.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+.products-page {
+  background: var(--surface);
+  min-height: 100vh;
+}
+
+.page-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.page-description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box .form-control {
+  padding-left: 3rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.filter-controls .form-select {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  color: var(--text-secondary);
+}
+
+.loading-container p {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+}
+
+.empty-state {
+  color: var(--text-muted);
+}
+
+.empty-state h3 {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .filter-controls {
+    margin-top: 1rem;
+  }
+}

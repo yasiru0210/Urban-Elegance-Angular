@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './common/header/header.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { ProductItemComponent } from './pages/product-item/product-item.component';
-import { FooterComponent } from './common/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent,DashboardComponent,ProductsComponent],
+  imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'demo-app';
+  title = 'Urban Elegance';
 }

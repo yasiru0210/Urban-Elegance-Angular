@@ -1,28 +1,169 @@
-<div class="container">
-   <div class="row">
-      <div>
-
-         <div class="col-6">
-         <label class="form-label" for="txt_id">Product ID </label>
-         <input class="form-control" type="text" id="txt_id" [(ngModel)]="product.id" placeholder="ID">
-
+<div class="registration-page">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="registration-card">
+          <div class="card-header">
+            <h2 class="card-title">Product Registration</h2>
+            <p class="card-description">
+              Register a new product in our system. Please fill in all required information.
+            </p>
+          </div>
+          
+          <form class="registration-form" (ngSubmit)="register()" #productForm="ngForm">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="txt_id" class="form-label required">Product ID</label>
+                  <input 
+                    type="text" 
+                    id="txt_id" 
+                    class="form-control"
+                    [(ngModel)]="product.id" 
+                    name="productId"
+                    placeholder="Enter unique product ID"
+                    required
+                    #productId="ngModel">
+                  <div class="invalid-feedback" *ngIf="productId.invalid && productId.touched">
+                    Product ID is required
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="txt_name" class="form-label required">Product Name</label>
+                  <input 
+                    type="text" 
+                    id="txt_name" 
+                    class="form-control"
+                    [(ngModel)]="product.name" 
+                    name="productName"
+                    placeholder="Enter product name"
+                    required
+                    #productName="ngModel">
+                  <div class="invalid-feedback" *ngIf="productName.invalid && productName.touched">
+                    Product name is required
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="txt_category" class="form-label required">Category</label>
+                  <select 
+                    id="txt_category" 
+                    class="form-select"
+                    [(ngModel)]="product.category" 
+                    name="productCategory"
+                    required
+                    #productCategory="ngModel">
+                    <option value="">Select a category</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="home">Home & Garden</option>
+                    <option value="sports">Sports & Outdoors</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="productCategory.invalid && productCategory.touched">
+                    Please select a category
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="txt_price" class="form-label required">Price ($)</label>
+                  <input 
+                    type="number" 
+                    id="txt_price" 
+                    class="form-control"
+                    [(ngModel)]="product.price" 
+                    name="productPrice"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                    required
+                    #productPrice="ngModel">
+                  <div class="invalid-feedback" *ngIf="productPrice.invalid && productPrice.touched">
+                    Please enter a valid price
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="txt_description" class="form-label">Description</label>
+                  <textarea 
+                    id="txt_description" 
+                    class="form-control"
+                    [(ngModel)]="product.description" 
+                    name="productDescription"
+                    placeholder="Enter product description (optional)"
+                    rows="4"></textarea>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="txt_image" class="form-label">Image URL</label>
+                  <input 
+                    type="url" 
+                    id="txt_image" 
+                    class="form-control"
+                    [(ngModel)]="product.imageUrl" 
+                    name="productImage"
+                    placeholder="https://example.com/image.jpg">
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="txt_stock" class="form-label required">Stock Quantity</label>
+                  <input 
+                    type="number" 
+                    id="txt_stock" 
+                    class="form-control"
+                    [(ngModel)]="product.stock" 
+                    name="productStock"
+                    placeholder="0"
+                    min="0"
+                    required
+                    #productStock="ngModel">
+                  <div class="invalid-feedback" *ngIf="productStock.invalid && productStock.touched">
+                    Please enter stock quantity
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button 
+                type="button" 
+                class="btn btn-outline-secondary me-3"
+                (click)="resetForm(productForm)">
+                Reset Form
+              </button>
+              <button 
+                type="submit" 
+                class="btn btn-primary"
+                [disabled]="productForm.invalid || isSubmitting">
+                <span *ngIf="isSubmitting" class="loading-spinner me-2"></span>
+                {{isSubmitting ? 'Registering...' : 'Register Product'}}
+              </button>
+            </div>
+          </form>
+          
+          <div class="success-message" *ngIf="showSuccessMessage">
+            <div class="alert alert-success">
+              <svg width="20" height="20" fill="currentColor" class="me-2" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.061L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+              </svg>
+              Product registered successfully!
+            </div>
+          </div>
+        </div>
       </div>
-      </div>
-      <div>
-
-         <div class="col-6">
-         <label class="form-label" for="txt_name">Product Name </label>
-         <input class="form-control" type="text" id="txt_name"[(ngModel)]="product.name" placeholder="Name">
-
-      </div>
-      <div class="col-6">
-         <button *ngIf="product.id!==null" (click)="register()"type="button" class="btn btn-primary " >Register</button>
-     
-      </div>
-      
-      </div>
-      
-   </div>
-
-
-
+    </div>
+  </div>
+</div>
